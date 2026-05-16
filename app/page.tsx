@@ -2,6 +2,7 @@ import Image from "next/image"
 import { Instagram } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { ScrollReveal } from "@/components/scroll-reveal"
+import { asset } from "@/lib/utils"
 
 // Album data
 const albums = [
@@ -41,12 +42,12 @@ const pastConcerts = [
 
 // Gallery images (optimized WebP in /public/images/photos)
 const galleryImages = [
-  { src: "/images/photos/gallery-sofar.webp", caption: "Sofar Sounds İzmir · 2025", aspect: "landscape" },
-  { src: "/images/photos/gallery-erkul.webp", caption: "Erkul Eğilmez · Ney", aspect: "portrait" },
-  { src: "/images/photos/gallery-bigo.webp", caption: "Bilgekağan Üçok · Guitar", aspect: "portrait" },
-  { src: "/images/photos/gallery-sofar-close.webp", caption: "Sofar Sounds İzmir · 2025", aspect: "landscape" },
-  { src: "/images/photos/gallery-duo.webp", caption: "Live Performance", aspect: "landscape" },
-  { src: "/images/photos/gallery-bigo2.webp", caption: "Electronics Setup", aspect: "portrait" },
+  { src: asset("/images/photos/gallery-sofar.webp"), caption: "Sofar Sounds İzmir · 2025", aspect: "landscape" },
+  { src: asset("/images/photos/gallery-erkul.webp"), caption: "Erkul Eğilmez · Ney", aspect: "portrait" },
+  { src: asset("/images/photos/gallery-bigo.webp"), caption: "Bilgekağan Üçok · Guitar", aspect: "portrait" },
+  { src: asset("/images/photos/gallery-sofar-close.webp"), caption: "Sofar Sounds İzmir · 2025", aspect: "landscape" },
+  { src: asset("/images/photos/gallery-duo.webp"), caption: "Live Performance", aspect: "landscape" },
+  { src: asset("/images/photos/gallery-bigo2.webp"), caption: "Electronics Setup", aspect: "portrait" },
 ]
 
 export default function HomePage() {
@@ -63,7 +64,7 @@ export default function HomePage() {
         {/* Background image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/photos/hero-bg.webp"
+            src={asset("/images/photos/hero-bg.webp")}
             alt="Otomatik Kaplan performing"
             fill
             sizes="100vw"
@@ -76,7 +77,7 @@ export default function HomePage() {
         <div className="relative z-10 flex flex-col items-center">
           <div className="glitch-constant glitch-hover">
             <Image
-              src="/images/logo.png"
+              src={asset("/images/logo.png")}
               alt="Otomatik Kaplan Logo"
               width={500}
               height={500}
@@ -107,7 +108,7 @@ export default function HomePage() {
       <section className="relative overflow-hidden">
         <div className="photo-grain duotone-yellow relative h-[50vh] md:h-[70vh]">
           <Image
-            src="/images/photos/live-sofar.webp"
+            src={asset("/images/photos/live-sofar.webp")}
             alt="Otomatik Kaplan live at Sofar Sounds Izmir"
             fill
             sizes="100vw"
@@ -350,7 +351,7 @@ export default function HomePage() {
               <div className="group">
                 <div className="photo-grain relative mb-6 aspect-[4/5] overflow-hidden">
                   <Image
-                    src="/images/photos/gallery-bigo.webp"
+                    src={asset("/images/photos/gallery-bigo.webp")}
                     alt="Bilgekağan Üçok performing with guitar and electronics"
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
@@ -398,7 +399,7 @@ export default function HomePage() {
               <div className="group">
                 <div className="photo-grain relative mb-6 aspect-[4/5] overflow-hidden">
                   <Image
-                    src="/images/photos/gallery-erkul.webp"
+                    src={asset("/images/photos/gallery-erkul.webp")}
                     alt="Erkul Eğilmez performing with ney"
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
@@ -514,7 +515,7 @@ export default function HomePage() {
             {/* Logo */}
             <div className="flex items-center gap-3">
               <Image
-                src="/images/logo.png"
+                src={asset("/images/logo.png")}
                 alt="Otomatik Kaplan"
                 width={32}
                 height={32}

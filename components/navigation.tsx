@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Image from "next/image"
-import { Menu, X } from "lucide-react"
+import { X } from "lucide-react"
 
 const navLinks = [
   { href: "#about", label: "HAKKİNDA" },
@@ -36,6 +36,15 @@ export function Navigation() {
     }
   }, [mobileOpen])
 
+  useEffect(() => {
+    if (!mobileOpen) return
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileOpen(false)
+    }
+    window.addEventListener("keydown", onKeyDown)
+    return () => window.removeEventListener("keydown", onKeyDown)
+  }, [mobileOpen])
+
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault()
     const targetId = href.replace("#", "")
@@ -56,8 +65,10 @@ export function Navigation() {
   return (
     <>
       <nav
-        className={`fixed left-0 right-0 top-0 z-[100] transition-all duration-300 ${
-          scrolled
+        className={`fixed left-0 right-0 top-0 transition-all duration-300 ${
+          mobileOpen ? "z-[120]" : "z-[100]"
+        } ${
+          scrolled || mobileOpen
             ? "bg-black/92 backdrop-blur-xl"
             : "bg-transparent"
         }`}
@@ -91,56 +102,83 @@ export function Navigation() {
             ))}
           </div>
 
-          {/* Mobile Hamburger */}
+          {/* Mobile menu toggle */}
           <button
+            type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="relative z-[110] flex h-10 w-10 items-center justify-center lg:hidden"
-            aria-label="Toggle menu"
+            className={`relative flex h-10 w-10 items-center justify-center lg:hidden ${
+              mobileOpen ? "z-[120]" : "z-[110]"
+            }`}
+            aria-label={mobileOpen ? "Menüyü kapat" : "Menüyü aç"}
+            aria-expanded={mobileOpen}
           >
-            <div className="relative h-5 w-6">
-              <span
-                className={`absolute left-0 h-[2px] w-full bg-foreground transition-all duration-300 ${
-                  mobileOpen ? "top-[9px] rotate-45" : "top-0"
-                }`}
-              />
-              <span
-                className={`absolute left-0 top-[9px] h-[2px] w-full bg-foreground transition-all duration-300 ${
-                  mobileOpen ? "opacity-0" : "opacity-100"
-                }`}
-              />
-              <span
-                className={`absolute left-0 h-[2px] w-full bg-foreground transition-all duration-300 ${
-                  mobileOpen ? "top-[9px] -rotate-45" : "top-[18px]"
-                }`}
-              />
-            </div>
+            {mobileOpen ? (
+              <X className="h-6 w-6 text-foreground" strokeWidth={1.5} />
+            ) : (
+              <div className="relative h-5 w-6">
+                <span className="absolute left-0 top-0 h-[2px] w-full bg-foreground" />
+                <span className="absolute left-0 top-[9px] h-[2px] w-full bg-foreground" />
+                <span className="absolute left-0 top-[18px] h-[2px] w-full bg-foreground" />
+              </div>
+            )}
           </button>
         </div>
       </nav>
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 z-[105] bg-black transition-opacity duration-300 lg:hidden ${
+        role="dialog"
+        aria-modal={mobileOpen}
+        aria-label="Menü"
+        onClick={() => setMobileOpen(false)}
+        className={`fixed inset-0 z-[105] bg-black/95 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
           mobileOpen ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       >
-        <div className="flex h-full flex-col items-center justify-center gap-8">
-          {navLinks.map((link, index) => (
+        <div
+          className="flex h-full flex-col"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="flex items-center justify-between px-4 py-3">
             <a
-              key={link.href}
-              href={link.href}
-              onClick={(e) => handleNavClick(e, link.href)}
-              className="font-sans text-2xl font-bold uppercase tracking-widest text-foreground transition-colors hover:text-primary"
-              style={{
-                transitionDelay: mobileOpen ? `${index * 50}ms` : "0ms",
-                opacity: mobileOpen ? 1 : 0,
-                transform: mobileOpen ? "translateY(0)" : "translateY(20px)",
-                transition: "all 0.3s ease",
-              }}
+              href="#"
+              onClick={() => setMobileOpen(false)}
+              className="flex items-center gap-3"
             >
-              {link.label}
+              <Image
+                src="/images/logo.png"
+                alt="Otomatik Kaplan"
+                width={36}
+                height={36}
+                className="h-9 w-auto"
+              />
             </a>
-          ))}
+            <button
+              type="button"
+              onClick={() => setMobileOpen(false)}
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-foreground/20 text-foreground transition-colors hover:border-primary hover:text-primary"
+              aria-label="Menüyü kapat"
+            >
+              <X className="h-6 w-6" strokeWidth={1.5} />
+            </button>
+          </div>
+
+          <div
+            className="mobile-nav-menu flex flex-1 flex-col items-center justify-center gap-8 pb-16"
+            data-open={mobileOpen}
+          >
+            {navLinks.map((link, index) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
+                className="mobile-nav-link font-sans text-2xl font-bold uppercase tracking-widest text-foreground hover:text-primary"
+                style={{ transitionDelay: mobileOpen ? `${index * 50}ms` : "0ms" }}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </>

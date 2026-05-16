@@ -9,8 +9,8 @@ const images = [
   {
     name: "hero-bg",
     url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/blackandyellow.JPG-dzn1NVwcrzlO7CfrD7JbcB0YJkUD9r.jpeg",
-    maxWidth: 1920,
-    quality: 82,
+    maxWidth: 1400,
+    quality: 72,
   },
   {
     name: "live-sofar",

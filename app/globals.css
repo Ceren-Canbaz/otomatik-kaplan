@@ -521,3 +521,18 @@ html {
 .ticket-btn:hover .arrow {
   transform: translateX(4px);
 }
+
+/* Mobile nav link stagger animation */
+.mobile-nav-link {
+  opacity: 0;
+  transform: translateY(20px);
+  transition-property: opacity, transform, color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  transition-delay: 0ms;
+}
+
+.mobile-nav-menu[data-open="true"] .mobile-nav-link {
+  opacity: 1;
+  transform: translateY(0);
+}

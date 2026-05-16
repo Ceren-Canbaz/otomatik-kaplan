@@ -39,14 +39,14 @@ const pastConcerts = [
   { date: "03 EKM 2024", venue: "Bant Mag Stage", city: "İstanbul" },
 ]
 
-// Gallery images
+// Gallery images (optimized WebP in /public/images/photos)
 const galleryImages = [
-  { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/colorized-sofar.JPG-ktXFvHXWzojC3bdIxKpBeE9iUD3uzO.jpeg", caption: "Sofar Sounds İzmir · 2025", aspect: "landscape" },
-  { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/bw-erkul-9ADeylaxtrUpeW1px0KuQEv1uQcewv.jpeg", caption: "Erkul Eğilmez · Ney", aspect: "portrait" },
-  { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/bw-bigo-ebMZwG7Ftnt22wwh7pGK3O3QoYVlZc.jpeg", caption: "Bilgekağan Üçok · Guitar", aspect: "portrait" },
-  { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/colorized-sofar-close-shot.JPG-BVqi2t87DJkLoDZE30tjtNAGzsgbdt.jpeg", caption: "Sofar Sounds İzmir · 2025", aspect: "landscape" },
-  { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/bw-erkul-bigo-2-FhxUmJpgD3yTs47jPH0DJtUmyqoJyW.jpeg", caption: "Live Performance", aspect: "landscape" },
-  { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/bw-bigo2-KIuq4GK7hfGrldDqsblk48prfeoNZb.jpeg", caption: "Electronics Setup", aspect: "portrait" },
+  { src: "/images/photos/gallery-sofar.webp", caption: "Sofar Sounds İzmir · 2025", aspect: "landscape" },
+  { src: "/images/photos/gallery-erkul.webp", caption: "Erkul Eğilmez · Ney", aspect: "portrait" },
+  { src: "/images/photos/gallery-bigo.webp", caption: "Bilgekağan Üçok · Guitar", aspect: "portrait" },
+  { src: "/images/photos/gallery-sofar-close.webp", caption: "Sofar Sounds İzmir · 2025", aspect: "landscape" },
+  { src: "/images/photos/gallery-duo.webp", caption: "Live Performance", aspect: "landscape" },
+  { src: "/images/photos/gallery-bigo2.webp", caption: "Electronics Setup", aspect: "portrait" },
 ]
 
 export default function HomePage() {
@@ -63,9 +63,10 @@ export default function HomePage() {
         {/* Background image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/blackandyellow.JPG-dzn1NVwcrzlO7CfrD7JbcB0YJkUD9r.jpeg"
+            src="/images/photos/hero-bg.webp"
             alt="Otomatik Kaplan performing"
             fill
+            sizes="100vw"
             className="object-cover opacity-40"
             priority
           />
@@ -106,9 +107,10 @@ export default function HomePage() {
       <section className="relative overflow-hidden">
         <div className="photo-grain duotone-yellow relative h-[50vh] md:h-[70vh]">
           <Image
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/colorized-sofar.JPG-ktXFvHXWzojC3bdIxKpBeE9iUD3uzO.jpeg"
+            src="/images/photos/live-sofar.webp"
             alt="Otomatik Kaplan live at Sofar Sounds Izmir"
             fill
+            sizes="100vw"
             className="object-cover grayscale transition-all duration-500 hover:grayscale-0"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/50" />
@@ -273,6 +275,8 @@ export default function HomePage() {
                     alt={image.caption}
                     width={800}
                     height={image.aspect === "portrait" ? 1000 : 600}
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    loading="lazy"
                     className="h-full w-full object-cover grayscale contrast-110 transition-all duration-400 hover:scale-[1.03] hover:grayscale-0"
                   />
                   <div className="caption font-mono text-xs text-foreground/80">
@@ -285,12 +289,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Videos Section */}
-      <section id="videos" className="relative bg-[#050505] px-4 py-24 md:py-32">
+      {/* Kayıtlar Section */}
+      <section id="kayitlar" className="relative bg-[#050505] px-4 py-24 md:py-32">
         <div className="mx-auto max-w-5xl">
           <ScrollReveal>
             <h2 className="flicker mb-16 font-mono text-xs uppercase tracking-[0.3em] text-primary">
-              Videolar
+              Kayıtlar
             </h2>
           </ScrollReveal>
           
@@ -318,7 +322,7 @@ export default function HomePage() {
                   <div className="text-center">
                     <p className="text-2xl font-bold text-primary">YAKINDA</p>
                     <p className="mt-2 font-mono text-xs text-muted-foreground">
-                      Yeni video geliyor...
+                      Yeni kayıt geliyor...
                     </p>
                   </div>
                 </div>
@@ -346,9 +350,11 @@ export default function HomePage() {
               <div className="group">
                 <div className="photo-grain relative mb-6 aspect-[4/5] overflow-hidden">
                   <Image
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/bw-bigo-ebMZwG7Ftnt22wwh7pGK3O3QoYVlZc.jpeg"
+                    src="/images/photos/gallery-bigo.webp"
                     alt="Bilgekağan Üçok performing with guitar and electronics"
                     fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    loading="lazy"
                     className="object-cover transition-all duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
@@ -392,9 +398,11 @@ export default function HomePage() {
               <div className="group">
                 <div className="photo-grain relative mb-6 aspect-[4/5] overflow-hidden">
                   <Image
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/bw-erkul-9ADeylaxtrUpeW1px0KuQEv1uQcewv.jpeg"
+                    src="/images/photos/gallery-erkul.webp"
                     alt="Erkul Eğilmez performing with ney"
                     fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    loading="lazy"
                     className="object-cover transition-all duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />

@@ -11,3 +11,6 @@ export function asset(path: string) {
   const normalized = path.startsWith("/") ? path : `/${path}`
   return `${base}${normalized}`
 }
+
+export const LOGO_HERO = asset("/images/logo.webp")
+export const LOGO_SM = asset("/images/logo-sm.webp")

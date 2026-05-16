@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Space_Grotesk, Space_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
-import { asset } from '@/lib/utils'
+import { LOGO_SM } from '@/lib/utils'
 
 const spaceGrotesk = Space_Grotesk({ 
   subsets: ["latin"],
@@ -27,8 +27,8 @@ export const metadata: Metadata = {
     locale: 'tr_TR',
   },
   icons: {
-    icon: asset('/images/logo.png'),
-    apple: asset('/images/logo.png'),
+    icon: LOGO_SM,
+    apple: LOGO_SM,
   },
 }
 

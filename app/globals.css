@@ -507,12 +507,6 @@ html {
   background: rgba(255, 0, 0, 0.05);
 }
 
-.social-btn:hover.soundcloud {
-  border-color: #FF5500;
-  color: #FF5500;
-  background: rgba(255, 85, 0, 0.05);
-}
-
 /* Concert row arrow animation */
 .ticket-btn .arrow {
   transition: transform 0.3s ease;

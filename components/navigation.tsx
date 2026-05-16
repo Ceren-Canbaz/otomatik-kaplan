@@ -3,11 +3,11 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import { X } from "lucide-react"
-import { asset } from "@/lib/utils"
+import { LOGO_SM } from "@/lib/utils"
 
 const navLinks = [
   { href: "#about", label: "HAKKİNDA" },
-  { href: "#albums", label: "ALBÜMLER" },
+  { href: "#discography", label: "DİSKOGRAFİ" },
   { href: "#concerts", label: "KONSERLER" },
   { href: "#gallery", label: "GALERİ" },
   { href: "#kayitlar", label: "KAYITLAR" },
@@ -78,7 +78,7 @@ export function Navigation() {
           {/* Logo */}
           <a href="#" className="flex items-center gap-3">
             <Image
-              src={asset("/images/logo.png")}
+              src={LOGO_SM}
               alt="Otomatik Kaplan"
               width={40}
               height={40}
@@ -147,7 +147,7 @@ export function Navigation() {
               className="flex items-center gap-3"
             >
               <Image
-                src={asset("/images/logo.png")}
+                src={LOGO_SM}
                 alt="Otomatik Kaplan"
                 width={36}
                 height={36}
